@@ -1,0 +1,41 @@
+.principal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.contenedorFormulario{
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 20px;
+    width: 80vw;
+    height: 60vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    color: #000;
+    padding: 20px;
+    align-items: center;
+}
+
+.formularioLoguin{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.textoLoguin{
+    padding: 20px;
+    h1{
+        font-size: 32px;
+    }
+    p{
+        margin-bottom: 10px;
+    }
+    ol {
+        list-style-type: decimal;
+        margin-left: 20px;
+      }
+}
