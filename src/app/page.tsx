@@ -3,6 +3,7 @@ import Image from "next/image";
 import { NextUIProvider } from "@nextui-org/react";
 import "@/styles/loguin.scss"
 import FormularioLoguin from "@/components/formularioLoguin";
+import Encabezado from "@/components/encabezado";
 
 
 
@@ -10,6 +11,7 @@ export default function Home() {
   return (
     <NextUIProvider>
       <main className="principal">
+      <Encabezado />
         <div className="contenedorFormulario">
           <div className="textoLoguin">
             <h1>Iniciar Sesión</h1>

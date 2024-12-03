@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Encabezado from "@/components/encabezado";
 import { NextUIProvider } from "@nextui-org/react";
 
 const geistSans = localFont({
@@ -30,7 +29,6 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-        <Encabezado/>
         <NextUIProvider>
           {children}
         </NextUIProvider>
