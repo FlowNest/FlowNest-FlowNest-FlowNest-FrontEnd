@@ -8,7 +8,7 @@ const Chats = () => {
     const router = useRouter();
     return (
         <div className="contenedorPagina">
-
+            chatsTexto
         </div>
     );
 }

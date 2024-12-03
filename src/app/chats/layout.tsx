@@ -3,6 +3,7 @@
 import React from 'react';
 import SideNav from '@/components/sidenav';
 import ContenedorPagina from '@/components/contenedor-pagina';
+import "@/styles/chats.scss"
 
 export default function ChatsLayout({
     children,
@@ -11,10 +12,17 @@ export default function ChatsLayout({
 }) {
     return (
         <div className="contenedorPrincipalChats">
-            <SideNav />
-            <main className="contenedorPrincipalPaginas">
-                <ContenedorPagina>{children}</ContenedorPagina>
-            </main>
+            <div className="fondoVerde">
+
+            </div>
+            <div className="contenedorChats">
+                <div className="barraNavegacion">
+                <SideNav />
+                </div>
+                <main className="chats">
+                    <ContenedorPagina>{children}</ContenedorPagina>
+                </main>
+            </div>
         </div>
     );
 }
