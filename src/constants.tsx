@@ -15,7 +15,7 @@ export const SIDENAV_ITEMS: SideNavItem[] = [
     },
     {
         title: 'Canales',
-        path: '/chats/estados',
+        path: '/chats/canales',
         icon: <Icon icon="fluent:chat-multiple-28-regular" width="28" height="28" />,
     },
     {

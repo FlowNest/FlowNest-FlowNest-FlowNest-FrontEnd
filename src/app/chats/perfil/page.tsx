@@ -1,8 +1,17 @@
-import React from 'react'
+import React from 'react';
+import { PaginaBienvenida } from "@/components/paginaBienvenida";
+
 
 const Perfil = () => {
   return (
-    <div>Perfil</div>
+    <div className="contenedorPaginaChats">
+      <div className="contactos">
+
+      </div>
+      <div className="mensajes">
+        <PaginaBienvenida></PaginaBienvenida>
+      </div>
+    </div>
   )
 }
 
