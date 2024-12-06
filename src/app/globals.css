@@ -98,6 +98,7 @@ body {
   flex-wrap: row;
   
   .contactos{
+    border-right: 1px solid #f0f2f5;
       background-color: #fff;
       height: 100%;
       width: 25%;

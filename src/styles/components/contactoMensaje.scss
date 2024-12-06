@@ -1,0 +1,36 @@
+.contenedorMensaje{
+    display: flex;
+    flex-direction: row;
+    padding: 10px 20px;
+    gap: 20px;
+    align-items: center;
+    border-bottom: 1px solid #f0f2f5;
+
+    .contenedorImagen{
+        width: 50px;
+        .imagen{
+            width: 50px;
+            border-radius: 50%;
+        }
+    }
+
+    .contenedorDescripcion{
+        width: calc(100% - 50px);
+        color: #8696a0;
+        .encabezadoContacto{
+            display: flex;
+            justify-content: space-between;
+            .nombreContacto{
+                color: #000;
+                font-size: 18px;
+            }
+
+            .fechaMensaje{
+                font-size: 14px;
+            }
+        }
+        .previsualizacionMensaje{
+            font-size: 14px;
+        }
+    }
+}
