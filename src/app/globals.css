@@ -109,3 +109,16 @@ body {
       width: 75%;
   }
 }
+
+.buscador{
+  padding: 10px;
+}
+
+.buscador Input{
+  color: #000;
+  
+}
+
+.iconoBuscar{
+  color: #71717a !important;
+}

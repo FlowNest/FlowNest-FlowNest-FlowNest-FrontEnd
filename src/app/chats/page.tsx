@@ -8,6 +8,8 @@ import { PaginaBienvenida } from "@/components/paginaBienvenida";
 import { HeaderPaginas } from "@/components/headerPaginas";
 import { ContactoMensaje } from "@/components/contactomensaje";
 import { PaginaMensajes } from "@/components/paginaMensajes";
+import { Input } from "@nextui-org/input";
+import { Icon } from '@iconify/react';
 
 const Chats = () => {
     const router = useRouter();
@@ -47,7 +49,7 @@ const Chats = () => {
     // Estado para rastrear el contacto seleccionado
     const [contactoSeleccionado, setContactoSeleccionado] = useState(null);
 
-    const handleContactoClick = (id:any) => {
+    const handleContactoClick = (id: any) => {
         setContactoSeleccionado(id);
     };
 
@@ -55,6 +57,9 @@ const Chats = () => {
         <div className="contenedorPaginaChats">
             <div className="contactos">
                 <HeaderPaginas titulo={"Chats"} />
+                <div className="buscador">
+                    <Input placeholder="Buscar..." variant="flat" startContent={<Icon className="iconoBuscar" icon="fluent:search-32-regular" width="32" height="32" />} />
+                </div>
                 {contactos.map((contacto) => (
                     <div
                         key={contacto.id}
