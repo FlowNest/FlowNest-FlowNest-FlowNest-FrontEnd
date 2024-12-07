@@ -22,6 +22,14 @@ const Ajustes = () => {
               Cuenta
             </div>
           </div>
+          <div className="opcionConfiguracion">
+            <div className="iconoConfigracion">
+            <Icon icon="fluent:person-circle-28-filled" width="25" height="25" />
+            </div>
+            <div className="nombreConfiguracion">
+              Cuenta
+            </div>
+          </div>
           <div className="opcionConfiguracion cerrarSesion">
             <div className="iconoConfigracion">
             <Icon icon="fluent:arrow-exit-20-regular" width="25" height="25" />
