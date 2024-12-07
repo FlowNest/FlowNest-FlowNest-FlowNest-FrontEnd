@@ -1,0 +1,25 @@
+.contenedorSidebar{
+    background-color: #f0f2f5;
+    height: 100%;
+    width: 100%;
+    color: #54656f;
+    .sidebar{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 10px 0;
+    }
+}
+
+.opcion{
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.opcion:hover{
+    color: #25D366;
+}
