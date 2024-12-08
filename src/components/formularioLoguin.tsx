@@ -30,6 +30,7 @@ export default function FormularioLoguin() {
 
             // Si el login es exitoso, guarda el token o lo que sea necesario
             localStorage.setItem("token", response.data.token);  // Asumiendo que la API devuelve un 'token'
+            localStorage.setItem("id_user", response.data.id);
             router.push("/chats");  // Redirige al chat
         } catch (error: unknown) {  // Usa 'unknown' en lugar de 'AxiosError'
             if (axios.isAxiosError(error)) {
