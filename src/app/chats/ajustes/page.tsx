@@ -14,11 +14,12 @@ const Ajustes = () => {
 
   const handleLogout = async () => {
     try {
-      const id = 1;  // Asume que el id es 1
+      const id = localStorage.getItem("id_user");  // Asume que el id es 1
       await axios.get(`http://127.0.0.1:8000/api/users/logout/?id=${id}`);
 
       // Eliminar el token del localStorage
       localStorage.removeItem("token");
+      localStorage.removeItem("id_user");
 
       // Redirigir al login o a la página de bienvenida
       router.push("/");  // Redirige a la página de login
