@@ -1,0 +1,22 @@
+.contenedorTextoMensajeEmisor{
+    max-width: 100%;
+    background: none;
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px;
+}
+
+.globoMensajeEmisor {
+    background-color: #d9fdd3;
+    color: #000;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 60%;
+  }
+
+  .horaMensajeEmisor {
+    margin-bottom: -10px;
+    color: #979b9d;
+    text-align: right;
+    font-size: 14px;
+}

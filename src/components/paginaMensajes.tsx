@@ -3,7 +3,8 @@ import "@/styles/components/paginaMensajes.scss";
 import { Input } from "@nextui-org/input";
 import { Button, ButtonGroup } from "@nextui-org/button";
 import { Icon } from "@iconify/react";
-
+import { MensajeEmisor } from "./mensajeEmisor";
+import { MensajeReceptor } from "./mensajeReceptor";
 // Definimos el tipo de las props
 interface PaginaMensajesProps {
   contactoId: number;
@@ -19,36 +20,33 @@ export const PaginaMensajes: React.FC<PaginaMensajesProps> = ({
   contactoId,
 }) => {
   const [contactosRegistrados, setContactosRegistrados] = useState<Contacto[]>([]);
-  /* const contactos = [
-        {
-            id: 1,
-            url: "https://avatars.githubusercontent.com/u/30373425?v=4",
-            nombre: "John Doe",
-            mensaje: "¡Hola! ¿Cómo estás?",
-            fecha: "2024-12-05",
-        },
-        {
-            id: 2,
-            url: "https://avatars.githubusercontent.com/u/4567890?v=4",
-            nombre: "Jane Smith",
-            mensaje: "¿Te gustaría reunirte mañana?",
-            fecha: "2024-12-04",
-        },
-        {
-            id: 3,
-            url: "https://avatars.githubusercontent.com/u/789123?v=4",
-            nombre: "Michael Brown",
-            mensaje: "Gracias por la ayuda de ayer.",
-            fecha: "2024-12-03",
-        },
-        {
-            id: 4,
-            url: "https://avatars.githubusercontent.com/u/112233?v=4",
-            nombre: "Emily Davis",
-            mensaje: "¡Felices fiestas!",
-            fecha: "2024-12-01",
-        },
-    ]; */
+  const mensajes = [
+    {
+      emisor: 1,
+      mensaje: "Hola como estas?",
+      hora: "10:15",
+      fecha: "2024-12-05",
+    },
+    {
+      emisor: 1,
+      mensaje: "¿Te gustaría reunirte mañana?",
+      hora: "09:30",
+      fecha: "2024-12-04",
+    },
+    {
+      emisor: 0,
+      mensaje: "Gracias por la ayuda de ayer.",
+      hora: "14:45",
+      fecha: "2024-12-03",
+    },
+    {
+      emisor: 0,
+      mensaje: "¡Felices fiestas!",
+      hora: "18:00",
+      fecha: "2024-12-01",
+    },
+  ];
+
   //Listar los contactos y mensajes
   const fetchContactosRegistrados = async (id: any) => {
     try {
@@ -66,8 +64,8 @@ export const PaginaMensajes: React.FC<PaginaMensajesProps> = ({
         nombre: item.contact.alias_name,
         mensaje: item.last_message ? item.last_message.content : "Sin mensajes",
         fecha: item.last_message
-        ? item.last_message.timestamp.split("T")[1].slice(0,5) // Extraer solo la hora
-        : "Sin hora",
+          ? item.last_message.timestamp.split("T")[1].slice(0, 5) // Extraer solo la hora
+          : "Sin hora",
       }));
 
       setContactosRegistrados(contactosTransformados);
@@ -103,7 +101,31 @@ export const PaginaMensajes: React.FC<PaginaMensajesProps> = ({
           <p className="fechaConexion">{contacto.fecha}</p>
         </div>
       </div>
-      <div className="contenedorMensajes">principal</div>
+      <div className="contenedorMensajes">
+        {/* Iteramos sobre los mensajes */}
+        {mensajes.map((mensaje, index) => {
+          // Dependiendo de si el emisor es 0 o 1, mostramos el componente correspondiente
+          if (mensaje.emisor === 0) {
+            return (
+              <MensajeReceptor
+                key={index}
+                mensaje={mensaje.mensaje}
+                hora={mensaje.hora}
+                fecha={mensaje.fecha}
+              />
+            );
+          } else {
+            return (
+              <MensajeEmisor
+                key={index}
+                mensaje={mensaje.mensaje}
+                hora={mensaje.hora}
+                fecha={mensaje.fecha}
+              />
+            );
+          }
+        })}
+      </div>
       <div className="contenedorEnviarMensaje">
         <form
           action=""
