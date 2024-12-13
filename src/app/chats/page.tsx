@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import "@/styles/chats.scss";
 import "@/styles/pagina-chats.scss";
 import { PaginaBienvenida } from "@/components/paginaBienvenida";
-import { HeaderPaginas } from "@/components/headerPaginas";
+import { HeaderPaginasAgregar } from "@/components/headerPaginasAgregar";
 import { ContactoMensaje } from "@/components/contactomensaje";
 import { PaginaMensajes } from "@/components/paginaMensajes";
 import { Input } from "@nextui-org/input";
@@ -97,7 +97,7 @@ const Chats = () => {
   return (
     <div className="contenedorPaginaChats">
       <div className="contactos">
-        <HeaderPaginas titulo={"Chats"} />
+        <HeaderPaginasAgregar titulo={"Chats"} />
         <div className="buscador">
           <Input
             placeholder="Buscar..."
