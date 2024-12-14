@@ -20,8 +20,7 @@ export const RegistroCanales: React.FC<RegistroCanalesProps> = ({ avatar, nombre
           <div className="nombreConIcono">
             <p className="nombre">{nombre}
             </p>
-            <Icon className="iconoVerificado" icon="fluent:shield-task-28-regular" width="20" height="20" />
-          </div>
+            <Icon className="iconoVerificado" icon="fluent:checkmark-starburst-16-filled" width="18" height="18" />          </div>
           <p className="numSeguidores">{seguidores}</p>
         </div>
       </div>
