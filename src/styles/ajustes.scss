@@ -20,3 +20,13 @@
         color: #ea0038;
     }
 }
+
+.usuario{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #000;
+    gap: 20px;
+    font-size: 18px;
+    padding: 20px;
+}

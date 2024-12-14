@@ -8,6 +8,7 @@ import { Icon } from '@iconify/react';
 import "@/styles/ajustes.scss";
 import axios from "axios";  // Importar Axios para hacer la solicitud de logout
 import { useRouter } from "next/navigation";  // Usar useRouter para redirigir al login
+import { Avatar } from "@nextui-org/react";
 
 const Ajustes = () => {
   const router = useRouter();
@@ -35,6 +36,15 @@ const Ajustes = () => {
         <div className="buscador">
           <Input placeholder="Buscar..." variant="flat" startContent={<Icon className="iconoBuscar" icon="fluent:search-32-regular" width="32" height="32" />} />
         </div>
+        <div className='usuario'>
+          <Avatar
+            className="w-20 h-20 text-large"
+            src="https://i.pravatar.cc/150?u=a04258114e29026708c"
+          />
+          <div className="nombreConfiguracion">
+            Juan Perez
+          </div>
+        </div>
         <div className="opcionesConfiguracion">
           <div className="opcionConfiguracion">
             <div className="iconoConfigracion">
@@ -46,10 +56,42 @@ const Ajustes = () => {
           </div>
           <div className="opcionConfiguracion">
             <div className="iconoConfigracion">
+              <Icon icon="fluent:lock-closed-24-filled" width="25" height="25" />
+            </div>
+            <div className="nombreConfiguracion">
+              Privacidad
+            </div>
+          </div>
+          <div className="opcionConfiguracion">
+            <div className="iconoConfigracion">
+              <Icon icon="fluent:chat-24-filled" width="25" height="25" />
+            </div>
+            <div className="nombreConfiguracion">
+              Chats
+            </div>
+          </div>
+          <div className="opcionConfiguracion">
+            <div className="iconoConfigracion">
               <Icon icon="fluent:person-circle-28-filled" width="25" height="25" />
             </div>
             <div className="nombreConfiguracion">
-              Cuenta
+              Notificaciones
+            </div>
+          </div>
+          <div className="opcionConfiguracion">
+            <div className="iconoConfigracion">
+              <Icon icon="fluent:keyboard-16-filled" width="25" height="25" />
+            </div>
+            <div className="nombreConfiguracion">
+              Atajos del teclado
+            </div>
+          </div>
+          <div className="opcionConfiguracion">
+            <div className="iconoConfigracion">
+              <Icon icon="fluent:question-circle-12-filled" width="25" height="25" />
+            </div>
+            <div className="nombreConfiguracion">
+              Ayuda
             </div>
           </div>
           <div className="opcionConfiguracion cerrarSesion" onClick={handleLogout}>

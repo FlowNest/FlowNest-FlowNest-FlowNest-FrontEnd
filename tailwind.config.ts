@@ -13,7 +13,7 @@ export default {
       colors: {
         background: "#EDEDED", // Fondo general en WhatsApp modo claro
         foreground: "#FFFFFF", // Fondos secundarios (burbujas de chat, tarjetas)
-        primary: "#25D366", // Verde de WhatsApp
+        primary: "#008069", // Verde de WhatsApp
         secondary: "#128C7E", // Verde oscuro para elementos destacados
         accent: "#DCF8C6", // Verde claro para mensajes enviados
         textPrimary: "#111B21", // Texto principal
