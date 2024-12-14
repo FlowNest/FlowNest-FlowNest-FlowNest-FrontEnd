@@ -1,0 +1,31 @@
+.fotoPerfil,
+.mensajePerfil {
+    background-color: #f0f2f5;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fotoPerfil {
+    height: 200px;
+}
+
+.mensajePerfil {
+    color: #54656f;
+    padding: 4px 20px 28px 30px;
+    font-size: 14px;
+}
+
+.contenedorInputPerfil{
+    padding: 14px 30px 10px;
+}
+
+.contenedorInputPerfil p {
+    color: #008069;
+}
+
+.inputPerfil,
+.group[data-has-value="true"] .group-data-\[has-value\=true\]\:text-foreground {
+    color: #54656f;
+}
