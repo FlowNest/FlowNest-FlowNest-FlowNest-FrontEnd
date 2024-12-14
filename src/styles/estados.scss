@@ -1,0 +1,28 @@
+.agregarEstado{
+    display: flex;
+    padding: 10px;
+    gap: 10px;
+}
+
+.estadoTitulo{
+    color: #3b4a54;
+}
+
+.descripcionAgregarEstado{
+    color: #c2c6c9;
+    font-size: 12px;
+}
+
+.espacio{
+    background-color: #f0f2f5;
+    height: 10px;
+}
+
+.listaEstados{
+    padding: 10px;
+
+    .tituloVerde{
+        padding: 10px;
+        color: #017561;
+    }
+}
