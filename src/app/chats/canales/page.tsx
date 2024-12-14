@@ -3,7 +3,7 @@ import React from 'react';
 import { PaginaBienvenida } from "@/components/paginaBienvenida";
 import { HeaderPaginas } from '@/components/headerPaginas';
 import { Button } from "@nextui-org/button";
-import { RegistroCanales } from '@/components/Registrocanales';
+import { RegistroCanales } from '@/components/RegistroCanales';
 import "@/styles/canales.scss";
 
 const canalesData = [
