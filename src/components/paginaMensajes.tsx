@@ -74,7 +74,7 @@ export const PaginaMensajes: React.FC<PaginaMensajesProps> = ({
   const fetchMensajes = async (sender: string, receiver: string) => {
     try {
       const response = await fetch(
-        `http://127.0.0.1:8000/api/messages/getMessagesContact/?sender=${sender}&receiver=${receiver}`
+        `http://127.0.0.1:8000/api/messages/?sender=${sender}&receiver=${receiver}`
       );
       if (!response.ok) {
         throw new Error("Error al recuperar los mensajes");
@@ -178,14 +178,70 @@ export const PaginaMensajes: React.FC<PaginaMensajesProps> = ({
       </div>
       <div className="contenedorEnviarMensaje">
         <form
-          action=""
           className="enviarMensaje"
+          onSubmit={async (e) => {
+            e.preventDefault(); // Evita la recarga de la página
+
+            // Recuperar valores
+            const inputElement = e.target.querySelector('.mensajeInput');
+            const mensaje = inputElement.value.trim(); // Obtener el valor del mensaje
+            const sender = localStorage.getItem("id_user"); // ID del remitente
+            const receiver = contactoId; // ID del destinatario (contacto)
+
+            // Validar que el mensaje no esté vacío
+            if (!mensaje) {
+              alert("El mensaje no puede estar vacío.");
+              return;
+            }
+
+            // Obtener el timestamp actual
+            const fechaActual = new Date();
+            const timestamp = fechaActual.toLocaleString(); // Esto devuelve la hora local
+            
+
+            try {
+              // Enviar el mensaje a la API
+              const response = await fetch("http://127.0.0.1:8000/api/messages/", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  sender: sender,
+                  receiver_id: receiver,
+                  content: mensaje,
+                  message_type: "text",
+                  status: "sent",
+                  is_deleted: 0,
+                  media_url: null,
+                  is_group_message: 0,
+                  encryption_key: "cifradoaes202425", // Clave de cifrado
+                  timestamp: timestamp, // Agrega el timestamp al cuerpo del mensaje
+                }),
+              });
+
+              if (!response.ok) {
+                throw new Error("Error al enviar el mensaje");
+              }
+
+              // Limpiar el campo de texto después del envío
+              inputElement.value = "";
+
+              // Actualizar los mensajes en pantalla
+              const nuevosMensajes = await fetchMensajes(sender, receiver); // Llama a la función existente
+              setMensajesContacto(nuevosMensajes); // Actualiza los mensajes
+            } catch (error) {
+              console.error("Error al enviar el mensaje:", error);
+              alert("Error al enviar el mensaje.");
+            }
+          }}
         >
           <input
             type="text"
             className="mensajeInput"
+            placeholder="Escribe un mensaje..."
           />
-          <button className="botonMensaje">
+          <button className="botonMensaje" type="submit">
             <Icon
               icon="fluent:send-24-filled"
               width="40"
@@ -193,7 +249,10 @@ export const PaginaMensajes: React.FC<PaginaMensajesProps> = ({
             />
           </button>
         </form>
+
       </div>
+
+
     </div>
   );
 };
