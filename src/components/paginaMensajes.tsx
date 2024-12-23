@@ -168,10 +168,16 @@ export const PaginaMensajes: React.FC<PaginaMensajesProps> = ({
 
   const fetchMensajes = async (sender: any, receiver: any) => {
     try {
-      console.log("Enviando solicitud a la API...");
       const response = await fetch(
         `http://127.0.0.1:8000/api/messages/getMessagesContact/?sender=${sender}&receiver=${receiver}`
       );
+
+      if (response.status === 204) {
+        console.warn(
+          `No se encontraron mensajes entre ${sender} y ${receiver}.`
+        );
+        return []; // Devuelve un array vacío si no hay mensajes
+      }
 
       if (!response.ok) {
         throw new Error(
@@ -179,33 +185,20 @@ export const PaginaMensajes: React.FC<PaginaMensajesProps> = ({
         );
       }
 
-      // Verifica si la respuesta tiene contenido
-      const text = await response.text(); // Lee la respuesta como texto
+      const text = await response.text();
       if (!text) {
         console.warn("La respuesta está vacía.");
         return [];
       }
 
-      // Intenta parsear el texto como JSON
-      let data;
-      try {
-        data = JSON.parse(text);
-      } catch (jsonError) {
-        console.error("Error al parsear la respuesta JSON:", jsonError);
-        throw new Error("La respuesta no es un JSON válido.");
-      }
-
-      console.log("Datos JSON parseados:", data);
-
-      // Verifica si los datos son válidos
-      if (!data || !Array.isArray(data) || data.length === 0) {
+      const data = JSON.parse(text);
+      if (!data || !Array.isArray(data)) {
         console.warn(
-          `No se encontraron mensajes entre ${sender} y ${receiver}`
+          "Los datos recibidos no son válidos o no contienen mensajes."
         );
         return [];
       }
 
-      // Transforma los mensajes si los datos son válidos
       const mensajesTransformados = data.map((mensaje) => ({
         sender: mensaje.sender,
         receiver: mensaje.receiver_id,
@@ -217,7 +210,7 @@ export const PaginaMensajes: React.FC<PaginaMensajesProps> = ({
       return mensajesTransformados;
     } catch (error) {
       console.error("Error al recuperar los mensajes:", error);
-      return []; // Devuelve un array vacío si ocurre algún error
+      return []; // Devuelve un array vacío si ocurre un error
     }
   };
 
@@ -245,6 +238,13 @@ export const PaginaMensajes: React.FC<PaginaMensajesProps> = ({
                 new Date(a.fecha + " " + a.hora).getTime() -
                 new Date(b.fecha + " " + b.hora).getTime()
             );
+
+            if (todosLosMensajes.length === 0) {
+              console.warn(
+                "No hay mensajes entre el usuario actual y el contacto seleccionado."
+              );
+            }
+
             setMensajesContacto(todosLosMensajes);
           })
           .catch((error) => console.error("Error combinando mensajes:", error));
@@ -262,32 +262,35 @@ export const PaginaMensajes: React.FC<PaginaMensajesProps> = ({
 
   return (
     <div className="contenedorPaginaMensajes">
+      {/* Cabecera del contacto */}
       <div className="headerMensajes">
         <div className="contenedorImagen">
           <img
             src={contacto.url}
-            alt={contacto.nombre}
+            alt={`Imagen de ${contacto.nombre}`}
             className="imagen"
           />
         </div>
         <div className="nombreContacto">
           <p className="nombre">{contacto.nombre}</p>
-          <p className="fechaConexion">{contacto.fecha}</p>
+          <p className="fechaConexion">Última conexión: {contacto.fecha}</p>
         </div>
       </div>
+
+      {/* Contenedor de mensajes */}
       <div className="contenedorMensajes">
-        {mensajesContacto.map((mensaje, index) => {
-          if (mensaje.sender.toString() === localStorage.getItem("id_user")) {
-            return (
+        {mensajesContacto.length > 0 ? (
+          mensajesContacto.map((mensaje, index) => {
+            const esMensajeUsuario =
+              mensaje.sender.toString() === localStorage.getItem("id_user");
+            return esMensajeUsuario ? (
               <MensajeEmisor
                 key={index}
                 mensaje={mensaje.mensaje}
                 hora={mensaje.hora}
                 fecha={mensaje.fecha}
               />
-            );
-          } else {
-            return (
+            ) : (
               <MensajeReceptor
                 key={index}
                 mensaje={mensaje.mensaje}
@@ -295,9 +298,13 @@ export const PaginaMensajes: React.FC<PaginaMensajesProps> = ({
                 fecha={mensaje.fecha}
               />
             );
-          }
-        })}
+          })
+        ) : (
+          <p className="sinMensajes hidden">No hay mensajes para mostrar.</p>
+        )}
       </div>
+
+      {/* Contenedor para enviar mensajes */}
       <div className="contenedorEnviarMensaje">
         <form
           className="enviarMensaje"
@@ -343,13 +350,13 @@ export const PaginaMensajes: React.FC<PaginaMensajesProps> = ({
               // Limpiar el campo de texto después del envío
               inputElement.value = "";
 
-              // Agregar el nuevo mensaje al estado actual sin hacer una nueva solicitud
+              // Agregar el nuevo mensaje al estado actual
               const nuevoMensaje = {
                 sender: parseInt(sender),
                 receiver: receiver,
-                mensaje: mensaje, // Este mensaje no necesita desencriptarse ya que lo acabas de enviar
-                hora: new Date().toTimeString().slice(0, 5), // Hora actual
-                fecha: new Date().toISOString().split("T")[0], // Fecha actual
+                mensaje: mensaje,
+                hora: new Date().toTimeString().slice(0, 5),
+                fecha: new Date().toISOString().split("T")[0],
               };
 
               setMensajesContacto((prevMensajes) => [
@@ -366,10 +373,12 @@ export const PaginaMensajes: React.FC<PaginaMensajesProps> = ({
             type="text"
             className="mensajeInput"
             placeholder="Escribe un mensaje..."
+            aria-label="Campo de mensaje"
           />
           <button
             className="botonMensaje"
             type="submit"
+            aria-label="Enviar mensaje"
           >
             <Icon
               icon="fluent:send-24-filled"
