@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import "@/styles/components/headerPaginas.scss";
 import { Icon } from "@iconify/react";
@@ -10,9 +9,7 @@ import {
   ModalFooter,
   Button,
   useDisclosure,
-  Checkbox,
   Input,
-  Link,
 } from "@nextui-org/react";
 
 type User = {
@@ -37,6 +34,13 @@ export const HeaderPaginasAgregar: React.FC<HeaderPaginasProps> = ({ titulo }) =
     setSuccessMessage('');
 
     try {
+      // Obtener el ID del usuario autenticado desde localStorage
+      const userId = localStorage.getItem("id_user");
+      if (!userId) {
+        setErrorMessage("El usuario no está autenticado.");
+        return;
+      }
+
       // Verificar si el número existe en la API de usuarios
       const userResponse = await fetch('http://127.0.0.1:8000/api/users/');
       const users: User[] = await userResponse.json();
@@ -49,7 +53,7 @@ export const HeaderPaginasAgregar: React.FC<HeaderPaginasProps> = ({ titulo }) =
         // Crear el contacto usando el usuario encontrado
         const newContact = {
           alias_name: name,
-          user: 4, // Cambia este valor al ID del usuario actual autenticado
+          user: parseInt(userId, 10), // ID del usuario autenticado
           contact: existingUser.id, // ID del usuario encontrado
         };
 

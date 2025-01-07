@@ -1,4 +1,3 @@
-
 .contenedorEncabezado {
     position: fixed;
     width: 100vw;
@@ -16,3 +15,130 @@
         height: 4vh;
     }
 }
+
+.botonRegistrar {
+
+    background-color: #25d366;
+    display: inline-block;
+    padding: 10px 24px;
+    border: 1px solid #4f4f4f;
+    border-radius: 30px;
+    transition: all 0.2s ease-in;
+    position: relative;
+    overflow: hidden;
+    font-size: 19px;
+    cursor: pointer;
+    color: black;
+    z-index: 1;
+}
+
+.botonRegistrar:before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) scaleY(1) scaleX(1.25);
+    top: 100%;
+    width: 140%;
+    height: 180%;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    display: block;
+    transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+    z-index: -1;
+}
+
+.botonRegistrar:after {
+    content: "";
+    position: absolute;
+    left: 55%;
+    transform: translateX(-50%) scaleY(1) scaleX(1.45);
+    top: 180%;
+    width: 160%;
+    height: 190%;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    display: block;
+    transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+    z-index: -1;
+}
+
+.botonRegistrar:hover {
+    color: #ffffff;
+    /*border: 1px solid #25d366;*/
+}
+
+.botonRegistrar:hover:before {
+    top: -35%;
+    background-color: rgba(0, 0, 0);
+    transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
+.botonRegistrar:hover:after {
+    top: -45%;
+    background-color: rgba(0, 0, 0, 0.05);
+    transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+  }
+  
+  .closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background: transparent;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .registroForm label {
+    display: block;
+    margin: 10px 0;
+  }
+  
+  .registroForm input[type="text"],
+  .registroForm input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .submitButton {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 147px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submitButton:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
