@@ -66,12 +66,11 @@ export default function Encabezado() {
                 throw new Error("Error al registrar usuario");
             }
 
-            alert("Usuario registrado exitosamente");
+
             form.reset(); // Verifica que el formulario existe antes de llamarlo
             setShowModal(false);
         } catch (error) {
             console.error("Error al registrar el usuario:", error);
-            alert("Hubo un problema al registrar el usuario.");
         } finally {
             setLoading(false);
         }
