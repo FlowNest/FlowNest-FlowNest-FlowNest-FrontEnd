@@ -25,7 +25,7 @@ export const ContactoMensaje: React.FC<ContactoMensajeProps> = ({ url, nombre, m
                         {fecha}
                     </p>
                 </div>
-                <p className="previsualizacionMensaje">
+                <p className="previsualizacionMensaje truncado">
                     {mensaje}
                 </p>
             </div>

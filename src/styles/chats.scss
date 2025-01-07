@@ -1,4 +1,4 @@
-.contenedorPrincipalChats{
+.contenedorPrincipalChats {
     height: 100vh;
     width: 100vw;
     background-color: #dbd8d4;
@@ -6,7 +6,7 @@
     align-items: center;
     justify-content: center;
 
-    .fondoVerde{
+    .fondoVerde {
         position: fixed;
         height: 20vh;
         width: 100vw;
@@ -15,7 +15,7 @@
         left: 0;
     }
 
-    .contenedorChats{
+    .contenedorChats {
         height: 95vh;
         width: 95vw;
         background-color: #fff;
@@ -24,14 +24,24 @@
         flex-direction: row;
         overflow: hidden;
 
-        .barraNavegacion{
+        .barraNavegacion {
             width: 5%;
         }
 
-        .chats{
+        .chats {
             width: 95%;
         }
     }
+
+    .truncado {
+        white-space: nowrap;
+        /* Evita que el texto haga saltos de línea */
+        overflow: hidden;
+        /* Oculta el texto que se desborda */
+        text-overflow: ellipsis;
+        /* Agrega los puntos suspensivos */
+        max-width: 120px;
+        /* Ajusta este valor según el diseño */
+    }
+
 }
-
-
