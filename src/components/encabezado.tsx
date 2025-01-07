@@ -101,15 +101,15 @@ export default function Encabezado() {
                         <h2>Registrar Usuario</h2>
                         <form className="registroForm" onSubmit={handleFormSubmit}>
                             <label>
-                                Teléfono*
+                                Teléfono
                                 <input type="text" name="phone_number" required />
                             </label>
                             <label>
-                                Usuario*
+                                Nombre
                                 <input type="text" name="username" required />
                             </label>
                             <label>
-                                Contraseña*
+                                Contraseña
                                 <input type="password" name="password_hash" required />
                             </label>
                             <button type="submit" className="submitButton" disabled={loading}>
